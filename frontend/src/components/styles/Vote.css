@@ -1,0 +1,26 @@
+.candidates{
+    width: 50%;
+    margin-left: 25%;
+    margin-bottom: 2%;
+}
+
+.content-form{
+    background-color: rgb(0, 0, 0, 0.6);
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 30px;
+}
+
+.content-form p{
+    color: white;
+}
+
+.vote-amount{
+    width: 50% !important;
+    margin-left: 25%;
+}
+
+.btn-spin{
+    margin-top: 1%;
+}
+

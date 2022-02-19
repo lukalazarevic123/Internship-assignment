@@ -1,0 +1,18 @@
+.register-box h1{
+    margin-bottom: 30px;
+}
+
+.form-control{
+    width: 50%;
+    margin-left: 25%;
+}
+
+.input-box{
+    margin-bottom: 2%;
+}
+
+.input-box small{
+    font-weight: 900;
+    text-align: left;
+}
+

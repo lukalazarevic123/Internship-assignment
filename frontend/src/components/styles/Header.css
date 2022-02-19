@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+.navbar-brand{
+    padding-left: 20px;
+}
+
+.nav{
+    opacity: 50%;
+}
+
+a{
+    color: #FEFEFE !important;
+    font-family: "Open Sans";
+}
+
+.btn-dark{
+    margin-right: 30px;
+    --bs-bg-opacity: 80%;
+}
+
+.wallet-address{
+    background-color: #FEFEFE;
+    border-radius: 30px;
+    color: black;
+    padding: 5px;
+    margin-right: 10px;
+}
