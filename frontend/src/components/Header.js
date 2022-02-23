@@ -8,8 +8,6 @@ export default function Header(){
 
     const [connected, setConnected] = useState(false);
     const [account, setAccount] = useState(null);
-
-    //TODO mozda izbaciti connect dugme
     
 
     const connectWallet = async () => {
