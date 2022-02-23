@@ -1,7 +1,8 @@
 const axios = require('axios');
 const ethers = require('ethers');
+const {SERVER_PORT} = require('./config');
 
-const port = 5000;
+const port = SERVER_PORT || 5000;
 
 export const getProvider = () => {
     if(window.ethereum && window.ethereum.isMetaMask){
