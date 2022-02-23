@@ -31,6 +31,7 @@ To run the backend of the application, follow the instructions:
   - Navigate to the backend folder
   - Run ```npm install``` command from the terminal
   - Create a ```.env``` file and fill it out just like the ```.env.example```
+  - Run the ```database.sql``` from the ```psql``` terminal
   - To run the server, run ```node server``` from the terminal
 
 ## Smart-Contracts
