@@ -48,7 +48,7 @@ export const showLeads = async () => {
         const winningCandidates = [];
 
         for(let i = 0; i < leads.data.leaders.length; i++){
-            if(leads.data.leaders[i][0] == '') continue;
+            if(leads.data.leaders[i][0] === '') continue;
             winningCandidates.push({
                 name: leads.data.leaders[i][0],
                 age: parseInt(leads.data.leaders[i][1].hex, 16),

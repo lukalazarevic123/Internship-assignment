@@ -31,9 +31,12 @@ export default function Vote(){
         setLoadingVote(false);
     }
 
-    useEffect(async () => {
-        const kandidati = await getCandidates();
-        setCandidates(kandidati);
+    useEffect(() => {
+        async function fetchData(){
+            const kandidati = await getCandidates();
+            setCandidates(kandidati);
+        }
+        fetchData();
     }, [])
 
     return(

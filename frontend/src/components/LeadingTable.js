@@ -1,7 +1,6 @@
 import React from "react";
-import {Container, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { getCandidates } from "../utils";
 
 
 export default function LeadingTable(props) {
