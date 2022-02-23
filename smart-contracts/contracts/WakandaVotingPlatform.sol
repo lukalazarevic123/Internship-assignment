@@ -14,21 +14,40 @@ contract WakandaVotingPlatform is IWakandaVotingPlatform{
     mapping(address => bool) registeredVoters;
     mapping(address => bool) voted;
 
-    Candidate[] candidates;
+    Candidate[] public candidates;
     uint256[] public leadingCandidates;
 
-    constructor (WKND _token){
+    constructor (WKND _token, string[] memory allNames, uint256[] memory allAges, string[] memory allCults){
         owner = msg.sender;
         token = _token;
+
+        addCandidates(allNames, allAges, allCults);
+    }
+
+    function addCandidates(string[] memory allNames, uint256[] memory allAges, string[] memory allCults) internal{
+        require(msg.sender == owner, "WakandaVotingPlatform::addCandidates: Only owner can add candidates");
+
+        for(uint i = 0; i < allNames.length; i++){
+            Candidate memory candidate = Candidate(allNames[i], allAges[i], allCults[i], 0);
+            candidates.push(candidate);
+        }
+    }
+
+    function getCandidates() override external view returns(Candidate[] memory){
+        return candidates;
+    }
+
+    function getCandidateByIndex(uint256 index) override external view returns(Candidate memory){
+        return candidates[index];
     }
 
     function isRegistered(address voterAddress) override public view returns (bool){
         return registeredVoters[voterAddress];
     }
 
-    function registerVoter(address voterAddress) override external { 
-        require(!isRegistered(voterAddress), "WakandaVotingPlatform::registerVoter: Voter already registered");
+    function registerVoter(address voterAddress) override external {
         require(!hasEnded, "WakandaVotingPlatform::registerVoter: Election has ended");
+        require(!isRegistered(voterAddress), "WakandaVotingPlatform::registerVoter: Voter already registered");
         
         registeredVoters[voterAddress] = true;
         token.mint(voterAddress);
@@ -100,9 +119,9 @@ contract WakandaVotingPlatform is IWakandaVotingPlatform{
         voted[voterAddress] = true;
     }
 
-    function winningCandidates() override external view returns(Candidate[] memory){
-        Candidate[] memory leading = new Candidate[];
-
+    function winningCandidates() override external view returns(Candidate[3] memory){
+        Candidate[3] memory leading;
+        
         for(uint i = 0; i < leadingCandidates.length; i++){
             leading[i] = candidates[leadingCandidates[i]];
         }

@@ -12,6 +12,9 @@ interface IWakandaVotingPlatform {
 
     event NewChallenger(Candidate newChallenger);
 
+    function getCandidateByIndex(uint256 index) external view returns(Candidate memory);
+    function getCandidates() external view returns(Candidate[] memory);
+
     function registerVoter(address voterAddress) external;
     function isRegistered(address voterAddress) external view returns (bool);
 
@@ -19,7 +22,7 @@ interface IWakandaVotingPlatform {
     function checkBalance(address voterAddress, uint256 voteAmount) external view returns (bool);
     function hasVoted(address voterAddress) external view returns (bool);
 
-    function winningCandidates() external view returns (Candidate[] memory);
+    function winningCandidates() external view returns (Candidate[3] memory);
     
     function endElection() external;
 }

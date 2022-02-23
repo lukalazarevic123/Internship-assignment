@@ -15,6 +15,7 @@ export default function LeadingTable(props) {
                     <th>Name</th>
                     <th>Age</th>
                     <th>Cult</th>
+                    <th>Votes</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +25,7 @@ export default function LeadingTable(props) {
                         <td>{candidate.name}</td>
                         <td>{candidate.age}</td>
                         <td>{candidate.cult}</td>
+                        <td>{candidate.votes}</td>
                     </tr>
                 )}
             </tbody>

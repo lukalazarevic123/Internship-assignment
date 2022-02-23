@@ -42,12 +42,29 @@ export const vote = async (candidateId, voteAmount) => {
 }
 
 export const showLeads = async () => {
+    try{
+        const leads = await axios.get(`http://localhost:${port}/winning-candidates`);
 
+        const winningCandidates = [];
+
+        for(let i = 0; i < leads.data.leaders.length; i++){
+            if(leads.data.leaders[i][0] == '') continue;
+            winningCandidates.push({
+                name: leads.data.leaders[i][0],
+                age: parseInt(leads.data.leaders[i][1].hex, 16),
+                cult: leads.data.leaders[i][2],
+                votes: parseInt(leads.data.leaders[i][3].hex, 16)
+            });
+        }
+
+        return winningCandidates;
+    }catch(error){
+        console.log(error.message);
+    }
 }
 
-export const getCandidates = () => {
-        // const response = await fetch("https://wakanda.zmilos.com/list/");
-        // const candidates = await response.json();
+export const getCandidates = async () => {
+        const candidates = await axios.get("https://wakanda-task.3327.io/list");
 
-        return [{name: "Luka", age: 20, cult: "SSZK"}, {name: "John", age: 20, cult: "KK Zorka"}];
+        return  candidates.data['candidates'];
 }

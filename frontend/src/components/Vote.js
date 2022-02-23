@@ -12,27 +12,27 @@ export default function Vote(){
     const [selected, setSelected] = useState(null);
     const [voteAmount, setVoteAmount] = useState(0);
     const [leaders, setLeaders] = useState([]);
-    const [isLoading, setLoading] = useState(false);
+    const [isLoadingVote, setLoadingVote] = useState(false);
 
     const getLeaders = async () => {
-        const leading = getCandidates();
-        console.log(leading);
+        const leading = await showLeads();
+
         setLeaders(leading);
     }
 
     const handleVote = async (event) => {
         event.preventDefault();
-        setLoading(true);
+        setLoadingVote(true);
 
         const response = await vote(selected, voteAmount);
 
         window.alert(response.message);
 
-        setLoading(false);
+        setLoadingVote(false);
     }
 
-    useEffect(() => {
-        const kandidati = getCandidates();
+    useEffect(async () => {
+        const kandidati = await getCandidates();
         setCandidates(kandidati);
     }, [])
 
@@ -55,7 +55,7 @@ export default function Vote(){
                             <FormControl placeholder = "amount" type = "number" min = "0" onChange = {event => setVoteAmount(event.target.value)} required></FormControl>
                         </InputGroup>
                         <div className = "btn-spin">
-                            {isLoading?
+                            {isLoadingVote?
                                 <Spinner animation="border" role="status" variant = "white">
                                     <span className="visually-hidden">Loading...</span>
                                 </Spinner>
